@@ -8,6 +8,7 @@ import bannerPrev from '../../banners/controllers/banner-prev.vue'
 interface ProductsBlockProps {
     list: APIProductItem[]
     title: string
+    desktopPerScreen?: number
 }
 
 const { isMobile } = useDeviceWidth()
@@ -21,10 +22,16 @@ defineProps<ProductsBlockProps>()
         <h2 class="h1 mb-4 lg:mb-12">{{ title }}</h2>
         <div class="z-0 group/slider">
             <Swiper
-                :slides-per-view="isMobile ? 'auto' : 6"
+                :slides-per-view="
+                    isMobile ? 'auto' : desktopPerScreen ? desktopPerScreen : 6
+                "
                 :space-between="isMobile ? 8 : 28"
             >
-                <SwiperSlide v-for="product of list" :key="product.id">
+                <SwiperSlide
+                    v-for="product of list"
+                    :key="product.id"
+                    class="product-slide"
+                >
                     <ProductCard :item="product" />
                 </SwiperSlide>
                 <div
@@ -37,3 +44,8 @@ defineProps<ProductsBlockProps>()
         </div>
     </section>
 </template>
+<style scoped lang="scss">
+.product-slide {
+    height: auto;
+}
+</style>

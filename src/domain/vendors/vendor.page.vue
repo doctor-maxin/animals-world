@@ -23,6 +23,10 @@ watch(
         immediate: true
     }
 )
+
+useHead({
+    title: 'Бренды'
+})
 </script>
 <template>
     <div class="py-12 min-h-screen max-w-screen-2xl mx-auto">

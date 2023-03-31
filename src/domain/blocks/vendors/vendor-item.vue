@@ -12,7 +12,7 @@ defineProps<VendorItemProps>()
         class="group bg-white rounded-2.5 w-full overflow-hidden"
         v-if="item.image"
     >
-        <nuxt-link :to="item.link.handle">
+        <nuxt-link :to="'/vendors/' + item.link.handle">
             <div class="py-6 px-7">
                 <img
                     class="w-full object-cover object-center aspect-[35/22]"

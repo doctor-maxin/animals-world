@@ -56,8 +56,6 @@ watch(
             const hasNews = blocks.find(
                 (block: any) => block.block_type === 'news'
             )
-            console.log(hasNews)
-
             if (hasNews) {
                 const news = await newsStore.getNews(3)
                 titles.news = hasNews.title
@@ -70,9 +68,9 @@ watch(
             )
             if (goodsBlock && goodsBlock.good_ids?.length) {
                 titles.products = goodsBlock.title
-                const products = await productsStore.getList(
-                    goodsBlock.good_ids
-                )
+                const products = await productsStore
+                    .getList(Object.values(goodsBlock.good_ids))
+                    .catch((err) => console.log('ERR', err))
                 if (products && products.length) {
                     productList.value = products
                 }
@@ -94,8 +92,22 @@ useSeoMeta(meta)
     <main class="py-12 flex flex-col gap-20 min-h-screen">
         <Banner variant="primary" handle="main" />
         <BlocksCategoriesBlock :list="catalogStore.getMainCategories" />
-        <BlocksProductsBlock :titles="titles.products" v-if="productList && productList.length" :list="productList" />
-        <BlocksVendorsBlock :title="titles.vendors" v-if="vendors && vendors.length" :list="vendors" />
-        <BlocksNewsBlock :title="titles.news" v-if="newsList && newsList.length" :list="newsList" />
+        <BlocksProductsBlock
+            class="max-w-screen-2xl mx-auto"
+            :title="titles.products"
+            :desktop-per-screen="5"
+            v-if="productList && productList.length"
+            :list="productList"
+        />
+        <BlocksVendorsBlock
+            :title="titles.vendors"
+            v-if="vendors && vendors.length"
+            :list="vendors"
+        />
+        <BlocksNewsBlock
+            :title="titles.news"
+            v-if="newsList && newsList.length"
+            :list="newsList"
+        />
     </main>
 </template>

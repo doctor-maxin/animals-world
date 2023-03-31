@@ -145,7 +145,7 @@ export type APIProductItem = {
     available_lvl: number
     rating: null | any
     image: APIImage
-    tags: APITag
+    tags: APITag[]
     price: number
     price_old: number
     link: APILinkGoods

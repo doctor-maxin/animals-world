@@ -9,11 +9,15 @@ export const useProductsStore = defineStore('products', {
     }),
     actions: {
         async getList(goods: number[]) {
+            const good_ids: any = {}
+
+            goods.forEach(
+                (item, index) => (good_ids[`good_id[${index}]`] = item)
+            )
+
             const { client } = useAPI()
-            return client.get<APIProductsResponse>('/catalog', {
-                query: {
-                    good_id: goods
-                }
+            return client.get<APIProductsResponse>('/catalog_good/list', {
+                query: good_ids
             })
         }
     }
