@@ -7,7 +7,7 @@ const mainStore = useMainStore()
 const { config } = storeToRefs(mainStore)
 </script>
 <template>
-    <div class="flex flex-col items-end">
+    <div class="flex flex-col items-end whitespace-nowrap lg:whitespace-normal">
         <div class="flex items-center gap-0.5 mb-1">
             <nuxt-icon
                 name="32/phone"

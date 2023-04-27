@@ -11,7 +11,7 @@ defineProps<CategoryBlockProps>()
     <nuxt-link
         v-if="item.link.type === APILinkType.catalog_section"
         :to="`/catalog/${item.link.handle}`"
-        class="py-6 block px-7 overflow-hidden category-item relative bg-gray-500 rounded-3.5 max-w-[12.5] max-h-[12.5] w-52 aspect-square"
+        class="py-6 block px-7 overflow-hidden category-item relative bg-gray-500 rounded-3.5 aspect-square"
     >
         <span class="font-bold relative z-10">{{ item.title }}</span>
         <img

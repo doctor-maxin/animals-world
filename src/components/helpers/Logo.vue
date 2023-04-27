@@ -7,6 +7,6 @@ const { config } = useMainStore()
     <img
         :src="config.header.logo"
         alt="Логотип сайта"
-        class="w-[8.25rem] h-[8.25rem]"
+        class="w-12 lg:w-[8.25rem] h-12 lg:h-[8.25rem]"
     />
 </template>

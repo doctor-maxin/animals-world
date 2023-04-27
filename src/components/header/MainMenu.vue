@@ -7,12 +7,19 @@ const options = [
     { id: 2, label: 'Красноярск' },
     { id: 3, label: 'Красноярск' }
 ]
+const { isMobile } = useDeviceWidth()
 </script>
 <template>
-    <div class="flex items-center gap-6">
-        <ui-button class="!border-0 w-fit min-w-fit">
+    <div
+        class="grid grid-flow-col grid-cols-[auto_auto] items-center gap-3 lg:gap-6"
+    >
+        <ui-button
+            v-if="!isMobile"
+            class="!border-0 w-fit min-w-fit hidden lg:block"
+        >
             <span class="flex items-center">
                 <nuxt-icon
+                    filled
                     class="text-[2.5rem] -my-3 -ml-2"
                     name="40/catalog-search"
                 />
@@ -21,11 +28,14 @@ const options = [
         </ui-button>
         <search-field
             :options="options"
-            class="w-full"
+            class=""
             v-model="search"
             placeholder="Поиск по товарам"
         />
-        <nav>
+        <button class="lg:hidden flex items-center">
+            <nuxt-icon class="text-[2rem]" name="mobile/menu" />
+        </button>
+        <nav v-if="!isMobile" class="hidden lg:block">
             <ul class="flex items-center gap-5">
                 <nuxt-link to="/" class="flex items-center gap-1 group">
                     <nuxt-icon name="40/promo" class="text-[2.5rem]" filled />

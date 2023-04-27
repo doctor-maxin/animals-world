@@ -4,7 +4,7 @@ const mainStore = useMainStore()
 const { data } = useAsyncData('main-social', () => mainStore.getSocials())
 </script>
 <template>
-    <div class="flex gap-1" v-if="data">
+    <div class="flex gap-1 justify-center lg:justify-end items-end" v-if="data">
         <a
             v-for="(item, index) of data"
             :href="item.url"

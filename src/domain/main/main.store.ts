@@ -3,7 +3,8 @@ import {
     APIConfigReponse,
     APIMenuLinks,
     APISocials,
-    APIMenuType
+    APIMenuType,
+    APIPageDetail
 } from '~~/src/helpers/api.types'
 
 interface MainState {
@@ -41,6 +42,15 @@ export const useMainStore = defineStore('main', {
         }
     }),
     actions: {
+        async getPage(handle: string) {
+            const { client } = useAPI()
+
+            return client.get<APIPageDetail>('/page/detail', {
+                query: {
+                    handle
+                }
+            })
+        },
         async getMenu(menuType: APIMenuType) {
             const { client } = useAPI()
 

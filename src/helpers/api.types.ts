@@ -3,6 +3,7 @@ export type APIMenuLinks = APIMenuLink[]
 export type APIMenuLink = {
     title: string
     link: APILink
+    children?: APIMenuLink[]
 }
 //  BANNERS
 export type APIBannerResponse = APIBannerItem[]
@@ -28,31 +29,42 @@ export type APIImage = {
     }
 }
 export type APILink =
-    | {
-          type: APILinkType.url
-          href: string
-      }
-    | {
-          type: APILinkType.catalog_good
-          handle: string
-          section_handle: string
-      }
-    | {
-          type: APILinkType.catalog_section
-          handle: string
-      }
-    | {
-          type: APILinkType.news
-          handle: string
-      }
-    | {
-          type: APILinkType.action
-          handle: string
-      }
-    | {
-          type: APILinkType.page
-          handle: string
-      }
+    | APILinkURL
+    | APILinkGoods
+    | APILinkCatalog
+    | APILinkNews
+    | APILinkAction
+    | APILinkPage
+
+export type APILinkCatalog = {
+    type: APILinkType.catalog_section
+    handle: string
+}
+
+export type APILinkAction = {
+    type: APILinkType.action
+    handle: string
+}
+
+export type APILinkPage = {
+    type: APILinkType.page
+    handle: string
+}
+
+export type APILinkURL = {
+    type: APILinkType.url
+    href: string
+}
+export type APILinkNews = {
+    type: APILinkType.news
+    handle: string
+}
+
+export type APILinkGoods = {
+    type: APILinkType.catalog_good
+    handle: string
+    section_handle: string
+}
 
 export const enum APILinkType {
     url = 'url',
@@ -92,4 +104,71 @@ export type APISocial = {
     title: string
     icon: string
     url: string
+}
+
+// PAGE
+
+export type APIPageDetails = APIPageDetail[]
+
+export type APIPageDetail = {
+    id: number
+    title: string
+    blocks: APIPageBlocks
+    seo: APISeoPage
+}
+
+export type APIPageBlocks = APIPageBlock[]
+
+export type APIPageBlock = {
+    title: string
+    block_type: 'goods' | 'news' | 'text' | 'image' | 'slider' | 'video' | 'seo'
+    good_ids?: number[]
+}
+
+//  NEWS
+export type APINewsResponse = APINewsItem[]
+
+export type APINewsItem = {
+    id: number
+    date: string
+    title: string
+    text: string
+    image?: APIImage
+    link: APILinkNews
+}
+
+//  PRODUCTS
+export type APIProductsResponse = APIProductItem[]
+export type APIProductItem = {
+    id: number
+    title: string
+    available_lvl: number
+    rating: null | any
+    image: APIImage
+    tags: APITag
+    price: number
+    price_old: number
+    link: APILinkGoods
+}
+
+//  TAGS
+export type APITag = {
+    name: string
+    title: string
+}
+
+//  VENDORS
+
+export type APIVendorsResponse = APIVendorItem[]
+export type APIVendorItem = {
+    id: number
+    title: string
+    link: APILinkURL
+    image: APIImage
+    section: APISection
+}
+
+export type APISection = {
+    id: string
+    title: string
 }

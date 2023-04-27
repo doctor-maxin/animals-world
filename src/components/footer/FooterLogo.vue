@@ -11,7 +11,7 @@ const { config } = storeToRefs(useMainStore())
             :src="config.footer.logo"
             alt="Footer logo"
         />
-        <span class="text-white caption-medium">{{
+        <span class="text-white caption-medium hidden lg:block">{{
             config.footer.copyright
         }}</span>
     </div>

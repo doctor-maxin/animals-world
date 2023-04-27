@@ -8,7 +8,7 @@ const { data: links } = await useAsyncData('topMenu', () =>
 )
 </script>
 <template>
-    <nav class="bg-secondary-blue">
+    <nav class="hidden lg:block bg-secondary-blue">
         <ul class="container flex gap-8 justify-start py-3.5">
             <template v-for="link of links">
                 <li
