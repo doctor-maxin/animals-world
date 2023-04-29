@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import TheHeader from '~/components/common/TheHeader.vue'
 import TheFooter from '~/components/common/TheFooter.vue'
-import { useMainStore } from '~/domain/main/main.store'
-import { useCatalogStore } from '~/domain/catalog/catalog.store'
+import { useMainStore } from '../domain/main/main.store'
+import { useCatalogStore } from '../domain/catalog/catalog.store'
 
 const mainStore = useMainStore()
 const catalogStore = useCatalogStore()
@@ -21,10 +21,10 @@ if (categories?.value) {
 </script>
 <template>
     <div>
-        <TheHeader />
+        <!-- <TheHeader /> -->
         <slot />
         <Suspense>
-            <TheFooter />
+            <!-- <TheFooter /> -->
             <template #fallback> Ошибка при загрузке </template>
         </Suspense>
     </div>

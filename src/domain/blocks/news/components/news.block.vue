@@ -30,25 +30,27 @@ const tranformedList = computed(() =>
 <template>
     <div class="container pl-4 lg:pl-0">
         <SectionLink class="mb-5 lg:mb-12" :title="title" link="/news" />
-        <div class="relative z-0 group/slider">
-            <Swiper
-                :slides-per-view="isMobile ? 'auto' : 3"
-                :space-between="isMobile ? 16 : 40"
-            >
-                <SwiperSlide
-                    v-for="item in tranformedList"
-                    class="max-w-[18.75rem] lg:max-w-[30rem]"
-                    :key="item.id"
+        <ClientOnly>
+            <div class="relative z-0 group/slider">
+                <Swiper
+                    :slides-per-view="isMobile ? 'auto' : 3"
+                    :space-between="isMobile ? 16 : 40"
                 >
-                    <Card :item="item" type="news" />
-                </SwiperSlide>
-                <div
-                    class="left-1/2 opacity-0 transition-opacity group-hover/slider:opacity-100 flex z-10 px-2 pointer-events-none -translate-x-1/2 w-full h-full top-0 max-w-screen-2xl items-center justify-between absolute"
-                >
-                    <bannerPrev />
-                    <bannerNext />
-                </div>
-            </Swiper>
-        </div>
+                    <SwiperSlide
+                        v-for="item in tranformedList"
+                        class="max-w-[18.75rem] lg:max-w-[30rem]"
+                        :key="item.id"
+                    >
+                        <Card :item="item" type="news" />
+                    </SwiperSlide>
+                    <div
+                        class="left-1/2 opacity-0 transition-opacity group-hover/slider:opacity-100 flex z-10 px-2 pointer-events-none -translate-x-1/2 w-full h-full top-0 max-w-screen-2xl items-center justify-between absolute"
+                    >
+                        <bannerPrev />
+                        <bannerNext />
+                    </div>
+                </Swiper>
+            </div>
+        </ClientOnly>
     </div>
 </template>

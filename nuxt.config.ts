@@ -8,6 +8,7 @@ export default defineNuxtConfig({
         'nuxt-icons',
         'nuxt-swiper'
     ],
+    // plugins: [{ src: '~/plugins/auto-import-components.ts', mode: 'client' }],
     // ssr: true,
     routeRules: {
         // '/': { prerender: true }

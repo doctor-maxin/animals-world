@@ -1,15 +1,10 @@
 <script setup lang="ts">
 import { useMainStore } from './main.store'
-import Banner from '~/domain/banners/banner.vue'
-import categoriesBlock from '../blocks/categories/categories.block.vue'
 import { useCatalogStore } from '../catalog/catalog.store'
 import { useNewsStore } from '../news/news.store'
-import { APINewsItem, APIProductItem } from '~~/src/helpers/api.types'
-import ProductsBlock from '@/domain/blocks/products/products.block.vue'
-import NewsBlock from '@/domain/blocks/news/news.block.vue'
-import VendorsBlock from '@/domain/blocks/vendors/vendors.block.vue'
 import { useProductsStore } from '../products/products.store'
 import { useVendorsStore } from '../vendors/vendors.store'
+import { APINewsItem, APIProductItem } from '~/src/helpers/api.types'
 
 const mainStore = useMainStore()
 const vendorsStore = useVendorsStore()
