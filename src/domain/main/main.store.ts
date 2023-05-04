@@ -5,7 +5,7 @@ import {
     APISocials,
     APIMenuType,
     APIPageDetail
-} from '~~/src/helpers/api.types'
+} from '~/src/helpers/api.types'
 
 interface MainState {
     config: {

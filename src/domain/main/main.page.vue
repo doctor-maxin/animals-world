@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useMainStore } from './main.store'
 import { useCatalogStore } from '../catalog/catalog.store'
 import { useNewsStore } from '../news/news.store'
 import { useProductsStore } from '../products/products.store'
 import { useVendorsStore } from '../vendors/vendors.store'
-import { APINewsItem, APIProductItem } from '~/src/helpers/api.types'
+import { useMainStore } from '#domain/main/main.store'
+import { APINewsItem, APIProductItem } from '~~/src/helpers/api.types'
 
 const mainStore = useMainStore()
 const vendorsStore = useVendorsStore()
@@ -53,13 +53,17 @@ watch(
 
         if (data.value?.blocks.length) {
             const blocks = data.value.blocks
-            const hasNews = blocks.find((block) => block.block_type === 'news')
+            const hasNews = blocks.find(
+                (block: any) => block.block_type === 'news'
+            )
             console.log(hasNews)
 
             if (hasNews) {
                 const news = await newsStore.getNews(3)
                 titles.news = hasNews.title
-                if (news && news.length) newsList.value = news
+                if (news && news.length) {
+                    newsList.value = news
+                }
             }
             const goodsBlock = blocks.find(
                 (block) => block.block_type === 'goods'
@@ -69,7 +73,9 @@ watch(
                 const products = await productsStore.getList(
                     goodsBlock.good_ids
                 )
-                if (products && products.length) productList.value = products
+                if (products && products.length) {
+                    productList.value = products
+                }
             }
         }
     },
@@ -86,22 +92,10 @@ useSeoMeta(meta)
 </script>
 <template>
     <main class="py-12 flex flex-col gap-20 min-h-screen">
-        <banner variant="primary" handle="main" />
-        <categories-block :list="catalogStore.getMainCategories" />
-        <products-block
-            :titles="titles.products"
-            v-if="productList && productList.length"
-            :list="productList"
-        />
-        <vendors-block
-            :title="titles.vendors"
-            v-if="vendors && vendors.length"
-            :list="vendors"
-        />
-        <news-block
-            :title="titles.news"
-            v-if="newsList && newsList.length"
-            :list="newsList"
-        />
+        <Banner variant="primary" handle="main" />
+        <BlocksCategoriesBlock :list="catalogStore.getMainCategories" />
+        <BlocksProductsBlock :titles="titles.products" v-if="productList && productList.length" :list="productList" />
+        <BlocksVendorsBlock :title="titles.vendors" v-if="vendors && vendors.length" :list="vendors" />
+        <BlocksNewsBlock :title="titles.news" v-if="newsList && newsList.length" :list="newsList" />
     </main>
 </template>

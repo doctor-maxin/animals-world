@@ -10,7 +10,7 @@ export const useProductsStore = defineStore('products', {
     actions: {
         async getList(goods: number[]) {
             const { client } = useAPI()
-            return await client.get<APIProductsResponse>('/catalog', {
+            return client.get<APIProductsResponse>('/catalog', {
                 query: {
                     good_id: goods
                 }

@@ -2,32 +2,36 @@
 <template>
     <svg
         class="spinner"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
     >
         <path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 12 0.781049 12 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0V2C17.5228 2 22 6.47715 22 12Z"
+            d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26ZM16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z"
+            fill="#DFF1FF"
+        />
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M26 16C26 21.5228 21.5228 26 16 26C10.4772 26 6 21.5228 6 16C6 16 4.78105 16 4 16C4 22.6274 9.37258 28 16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4V6C21.5228 6 26 10.4772 26 16Z"
             fill="#161616"
         />
     </svg>
 </template>
 <style lang="scss">
 .spinner {
-    animation: rotate 1s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+    animation: rotate 1s cubic-bezier(0.275, 0.82, 0.565, 1) infinite forwards;
 }
 @keyframes rotate {
     from {
-        --tw-rotate: 0
-        transform: translate(var(--tw-translate-x), -50%) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+        transform: rotate(0);
     }
     to {
-        --tw-rotate: 360deg;
-        transform: translate(var(--tw-translate-x), -50%) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+        transform: rotate(360deg);
     }
 }
 </style>

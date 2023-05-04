@@ -1,25 +1,25 @@
 export type APIMenuType = 'top' | 'bottom' | 'bottom_2'
-export type APIMenuLinks = APIMenuLink[]
 export type APIMenuLink = {
     title: string
     link: APILink
     children?: APIMenuLink[]
 }
+export type APIMenuLinks = APIMenuLink[]
 //  BANNERS
-export type APIBannerResponse = APIBannerItem[]
 export type APIBannerItem = {
     id: number
     title: string
     link: APILink
     image: APIImage
 }
+export type APIBannerResponse = APIBannerItem[]
 
-export type APIConfigReponse = APIConfigItem[]
 export type APIConfigItem = {
     module: string
     code: string
     value: string
 }
+export type APIConfigReponse = APIConfigItem[]
 
 export type APIImage = {
     title: string
@@ -158,17 +158,27 @@ export type APITag = {
 }
 
 //  VENDORS
-
-export type APIVendorsResponse = APIVendorItem[]
-export type APIVendorItem = {
-    id: number
-    title: string
-    link: APILinkURL
-    image: APIImage
-    section: APISection
-}
-
 export type APISection = {
     id: string
     title: string
 }
+export type APIVendorItem = {
+    id: number
+    title: string
+    link: APILinkNews
+    image: APIImage
+    section: APISection
+}
+export type APIVendorsResponse = APIVendorItem[]
+
+export type APIVendorSection = {
+    id: number
+    title: string
+}
+
+export type APIVendorItemExtended = Omit<APIVendorItem, 'link'> & {
+    text: string
+    seo: APISeoPage
+}
+
+export type APIVendorSectionResponse = APIVendorSection[]

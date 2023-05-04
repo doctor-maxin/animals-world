@@ -1,13 +1,29 @@
+import { resolve } from 'path'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     css: ['~/assets/main.css', '~/assets/scss/common.scss'],
     srcDir: './src/',
+    alias: {
+        '#domain': resolve(__dirname, './src/domain')
+    },
     modules: [
         '@nuxtjs/tailwindcss',
         '@pinia/nuxt',
         'nuxt-icons',
         'nuxt-swiper'
     ],
+    components: [
+        { path: '~/domain/blocks', prefix: 'Blocks' },
+        { path: '~/components' },
+        { path: '~/domain/banners' },
+        { path: '~/domain/vendors' },
+        { path: '~/domain/products/components', prefix: 'ProductCard' }
+    ],
+    typescript: {
+        includeWorkspace: true,
+        tsConfig: resolve(__dirname, './tsconfig.json')
+    },
     // plugins: [{ src: '~/plugins/auto-import-components.ts', mode: 'client' }],
     // ssr: true,
     routeRules: {

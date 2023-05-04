@@ -20,7 +20,9 @@ export function useDeviceWidth() {
                   fullConfig.theme.screens['sm'].replace('px', '')
                 : 500
         )
-        return windowWidth.value < mobile ? true : false
+        return windowWidth.value >= 0 && windowWidth.value < mobile
+            ? true
+            : false
     })
 
     return { isMobile }

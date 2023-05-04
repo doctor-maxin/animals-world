@@ -4,7 +4,7 @@
     >
         <LogoHelper />
         <div class="lg:flex flex-col gap-5 w-full">
-            <HeaderTopBar v-if="!isMobile" class="hidden lg:block" />
+            <HeaderTopBar class="hidden lg:block" />
             <HeaderMainMenu />
         </div>
     </header>

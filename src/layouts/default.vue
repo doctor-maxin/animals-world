@@ -1,17 +1,18 @@
 <script lang="ts" setup>
-import TheHeader from '~/components/common/TheHeader.vue'
-import TheFooter from '~/components/common/TheFooter.vue'
 import { useMainStore } from '../domain/main/main.store'
 import { useCatalogStore } from '../domain/catalog/catalog.store'
+import TheHeader from '~/components/common/TheHeader.vue'
+import TheFooter from '~/components/common/TheFooter.vue'
 
 const mainStore = useMainStore()
 const catalogStore = useCatalogStore()
-const { data } = useAsyncData('main-config', () =>
+const { data } = await useAsyncData('main-config', () =>
     mainStore.getConfig('common')
 )
-if (data?.value) mainStore.setConfig(data.value)
-
-const { data: categories } = useAsyncData('main-catalog', () =>
+if (data?.value) {
+    mainStore.setConfig(data.value)
+}
+const { data: categories } = await useAsyncData('main-catalog', () =>
     catalogStore.getCategories()
 )
 if (categories?.value) {
@@ -21,11 +22,22 @@ if (categories?.value) {
 </script>
 <template>
     <div>
-        <!-- <TheHeader /> -->
+        <Suspense>
+            <template #default>
+                <TheHeader />
+            </template>
+            <template #fallback>
+                <TheHeader />
+            </template>
+        </Suspense>
         <slot />
         <Suspense>
-            <!-- <TheFooter /> -->
-            <template #fallback> Ошибка при загрузке </template>
+            <template #default>
+                <TheFooter />
+            </template>
+            <template #fallback>
+                <TheFooter />
+            </template>
         </Suspense>
     </div>
 </template>

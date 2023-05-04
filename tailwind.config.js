@@ -17,6 +17,11 @@ module.exports = {
             mono: ['Open Sans', 'ui-monospace']
         },
         extend: {
+            spacing: {
+                13: '3.25rem',
+                14.5: '3.625rem',
+                15: '3.75rem'
+            },
             gridTemplateColumns: {
                 footer: 'minmax(0, 21.875rem) auto minmax(0, 21.875rem)'
             },
@@ -28,6 +33,9 @@ module.exports = {
             },
             height: {
                 95: '23.75rem'
+            },
+            minHeight: {
+                'available-screen': 'calc(100vh - 46.125rem)'
             },
             maxHeight: {
                 95: '23.75rem'

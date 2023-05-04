@@ -18,26 +18,31 @@ const { data: privacyLinks } = await useAsyncData('privacyLinks', () =>
 )
 </script>
 <template>
-    <footer class="bg-primary-blue flex flex-col items-center">
-        <div
-            class="max-w-screen-2xl pt-7 pb-10 w-full grid grid-cols-2 lg:grid-cols-footer px-4 gap-y-5 lg:gap-0"
-        >
-            <footer-logo class="col-start-1 row-start-1" />
-            <footer-menu
-                class="row-start-2 lg:row-start-1 lg:row-span-2 col-start-1 col-span-2 lg:col-span-1"
-                :items="footerLinks"
-            />
-            <footer-info class="col-start-2 lg:col-start-3 row-start-1" />
-            <footer-subscribe
-                class="col-start-1 row-start-3 lg:row-start-2 col-span-2 lg:col-span-1 mb-2 lg:mb-0"
-            />
-            <footer-socials
-                class="col-start-1 col-span-2 lg:col-span-1 lg:col-start-3 row-start-4 lg:row-start-2"
-            />
-        </div>
-        <div>
-            <footer-privacy-links v-if="privacyLinks" :links="privacyLinks" />
-        </div>
-        <footer-alente />
-    </footer>
+    <client-only>
+        <footer class="bg-primary-blue flex flex-col items-center">
+            <div
+                class="max-w-screen-2xl pt-7 pb-10 w-full grid grid-cols-2 lg:grid-cols-footer px-4 gap-y-5 lg:gap-0"
+            >
+                <footer-logo class="col-start-1 row-start-1" />
+                <footer-menu
+                    class="row-start-2 lg:row-start-1 lg:row-span-2 col-start-1 col-span-2 lg:col-span-1"
+                    :items="footerLinks"
+                />
+                <footer-info class="col-start-2 lg:col-start-3 row-start-1" />
+                <footer-subscribe
+                    class="col-start-1 row-start-3 lg:row-start-2 col-span-2 lg:col-span-1 mb-2 lg:mb-0"
+                />
+                <footer-socials
+                    class="col-start-1 col-span-2 lg:col-span-1 lg:col-start-3 row-start-4 lg:row-start-2"
+                />
+            </div>
+            <div>
+                <footer-privacy-links
+                    v-if="privacyLinks"
+                    :links="privacyLinks"
+                />
+            </div>
+            <footer-alente />
+        </footer>
+    </client-only>
 </template>

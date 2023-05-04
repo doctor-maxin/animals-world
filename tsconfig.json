@@ -9,11 +9,7 @@
         "sourceMap": true,
         "strict": true,
         "noEmit": true,
-        "baseUrl": ".",
-        "paths": {
-            "~/*": ["./*"],
-            "@/*": ["./*"]
-        },
+        "baseUrl": "./",
         "types": ["@nuxt/types", "@types/node"]
     },
     "exclude": ["node_modules", "dist"],

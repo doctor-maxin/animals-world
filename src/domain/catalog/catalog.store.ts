@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import {
     APICatalogItem,
     APICatalogResponse,
+    APIProductItem,
     APISeoPage
 } from '~~/src/helpers/api.types'
 
@@ -36,9 +37,40 @@ export const useCatalogStore = defineStore('catalog', {
             this.seo = item.seo
             this.title = item.title
         },
+        async getProducts(query?: ProductFilters) {
+            const { client } = useAPI()
+            return client.get<APIProductItem[]>('/catalog_good', {
+                query
+            })
+        },
         async getCategories() {
             const { client } = useAPI()
             return client.get<APICatalogResponse>('/catalog_section')
         }
     }
 })
+
+interface ProductFilters {
+    sort?: ProductFiltersSort
+    sort_direct?: ProductFiltersSortDirect
+    available?: boolean
+    action?: boolean
+    novelty?: boolean
+    popular?: boolean
+    section_handle?: string
+    brand_id?: number
+    price_min?: number
+    price_max?: number
+    good_id?: number[]
+    page?: number
+    page_size?: number
+    filter?: any[]
+}
+
+export type ProductFiltersSortDirect = 'asc' | 'desc'
+
+const enum ProductFiltersSort {
+    'price' = 'price',
+    'popular' = 'popular',
+    'rating' = 'rating'
+}

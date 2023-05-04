@@ -1,13 +1,13 @@
 import type { RouterConfig } from '@nuxt/schema'
 // https://router.vuejs.org/api/interfaces/routeroptions.html
 export default <RouterConfig>{
-    routes: (_routes) => [
+    routes: (_routes: any) => [
         {
             name: 'main',
             path: '/',
             component: () =>
                 import('~/domain/main/main.page.vue').then(
-                    (r) => r.default || r
+                    (r: any) => r.default || r
                 )
         },
         {
@@ -15,7 +15,7 @@ export default <RouterConfig>{
             path: '/about',
             component: () =>
                 import('~/domain/main/main.page.vue').then(
-                    (r) => r.default || r
+                    (r: any) => r.default || r
                 )
         },
         {
@@ -23,7 +23,7 @@ export default <RouterConfig>{
             path: '/legal',
             component: () =>
                 import('~/domain/main/main.page.vue').then(
-                    (r) => r.default || r
+                    (r: any) => r.default || r
                 )
         },
         {
@@ -31,7 +31,7 @@ export default <RouterConfig>{
             path: '/contacts',
             component: () =>
                 import('~/domain/main/main.page.vue').then(
-                    (r) => r.default || r
+                    (r: any) => r.default || r
                 )
         },
         {
@@ -39,7 +39,7 @@ export default <RouterConfig>{
             path: '/vacancy',
             component: () =>
                 import('~/domain/main/main.page.vue').then(
-                    (r) => r.default || r
+                    (r: any) => r.default || r
                 )
         },
         {
@@ -47,7 +47,7 @@ export default <RouterConfig>{
             path: '/delivery',
             component: () =>
                 import('~/domain/main/main.page.vue').then(
-                    (r) => r.default || r
+                    (r: any) => r.default || r
                 )
         },
         {
@@ -55,7 +55,7 @@ export default <RouterConfig>{
             path: '/shops',
             component: () =>
                 import('~/domain/main/main.page.vue').then(
-                    (r) => r.default || r
+                    (r: any) => r.default || r
                 )
         },
         {
@@ -63,17 +63,46 @@ export default <RouterConfig>{
             path: '/catalog',
             component: () =>
                 import('~/domain/catalog/catalog.page.vue').then(
-                    (r) => r.default || r
+                    (r: any) => r.default || r
                 ),
             children: [
                 {
                     path: ':id',
                     component: () =>
                         import('~/domain/catalog/category.page.vue').then(
-                            (r) => r.default || r
+                            (r: any) => r.default || r
                         )
                 }
             ]
+        },
+        {
+            name: 'vendors',
+            path: '/vendors',
+            component: () =>
+                import('~/domain/vendors/vendor.page.vue').then(
+                    (r: any) => r.default || r
+                )
+        },
+        {
+            path: '/vendors/:id',
+            component: () =>
+                import('~/domain/vendors/components/vendor-item.vue').then(
+                    (r: any) => r.default || r
+                )
+        },
+        {
+            path: '/user_policy',
+            component: () =>
+                import('~/domain/main/main.page.vue').then(
+                    (r: any) => r.default || r
+                )
+        },
+        {
+            path: '/private_policy',
+            component: () =>
+                import('~/domain/main/main.page.vue').then(
+                    (r: any) => r.default || r
+                )
         }
     ]
 }
