@@ -103,6 +103,13 @@ export default <RouterConfig>{
                 import('~/domain/main/main.page.vue').then(
                     (r: any) => r.default || r
                 )
-        }
+        },
+        { 
+            path: '/:pathMatch(.*)*', name: 'NotFound', 
+            component: () => 
+                import('~/components/common/NotFound.vue').then(
+                    (r: any) => r.default || r
+                ) 
+        },
     ]
 }

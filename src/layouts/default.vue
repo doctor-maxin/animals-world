@@ -3,6 +3,7 @@ import { useMainStore } from '../domain/main/main.store'
 import { useCatalogStore } from '../domain/catalog/catalog.store'
 import TheHeader from '~/components/common/TheHeader.vue'
 import TheFooter from '~/components/common/TheFooter.vue'
+import ThrowError from '~/components/common/ThrowError.vue'
 
 const mainStore = useMainStore()
 const catalogStore = useCatalogStore()
@@ -39,5 +40,8 @@ if (categories?.value) {
                 <TheFooter />
             </template>
         </Suspense>
+        <NuxtErrorBoundary>
+            <ThrowError />
+        </NuxtErrorBoundary>
     </div>
 </template>

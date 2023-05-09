@@ -101,7 +101,7 @@ export type APISeoPage = {
 // socials
 export type APISocials = APISocial[]
 export type APISocial = {
-    title: string
+    title: stringƒ
     icon: string
     url: string
 }
@@ -122,6 +122,7 @@ export type APIPageBlocks = APIPageBlock[]
 export type APIPageBlock = {
     title: string
     block_type: 'goods' | 'news' | 'text' | 'image' | 'slider' | 'video' | 'seo'
+    list?: any[]
     good_ids?: number[]
 }
 
@@ -182,3 +183,13 @@ export type APIVendorItemExtended = Omit<APIVendorItem, 'link'> & {
 }
 
 export type APIVendorSectionResponse = APIVendorSection[]
+
+// META PAGES
+export type MetaPage = {
+    title: string
+    description: string
+    keywords: string
+    ogImage: string
+    ogTitle: string
+    ogDescription: string
+}
