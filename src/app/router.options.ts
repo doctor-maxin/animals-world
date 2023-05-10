@@ -65,15 +65,13 @@ export default <RouterConfig>{
                 import('~/domain/catalog/catalog.page.vue').then(
                     (r: any) => r.default || r
                 ),
-            children: [
-                {
-                    path: ':id',
-                    component: () =>
-                        import('~/domain/catalog/category.page.vue').then(
-                            (r: any) => r.default || r
-                        )
-                }
-            ]
+        }, {
+            name: 'catalog',
+            path: '/catalog/:handle',
+            component: () =>
+            import('~/domain/catalog/category.page.vue').then(
+                (r: any) => r.default || r
+            )
         },
         {
             name: 'vendors',

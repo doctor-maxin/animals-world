@@ -83,12 +83,16 @@ export type APICatalogItem = {
     title: string
     link: APILink
     image: APIImage
-    seo_block: APISeoBlock[]
+    seo_block: APISeoBlock
     children: APICatalogItem[]
     seo: APISeoPage
 }
 
-export type APISeoBlock = {}
+export type APISeoBlock = {
+    title: string
+    text: string
+    image: APIImage
+}
 export type APISeoPage = {
     seo_title: string
     seo_description: string

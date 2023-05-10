@@ -19,6 +19,8 @@ const { data: categories } = await useAsyncData('main-catalog', () =>
 if (categories?.value) {
     catalogStore.setCatalogInfo(categories.value)
     catalogStore.setCategories(categories.value.children)
+    if (categories.value.seo_block)
+        catalogStore.setSeoBlock(categories.value.seo_block)
 }
 </script>
 <template>

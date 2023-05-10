@@ -2,5 +2,4 @@
 export default defineAppConfig({
     title: 'Hello world',
     theme: {}
-    la
 })

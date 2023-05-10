@@ -8,6 +8,8 @@ const options = [
     { id: 3, label: 'Красноярск' }
 ]
 const { isMobile } = useDeviceWidth()
+
+const openCatalog = () => {}
 </script>
 <template>
     <client-only>
@@ -16,6 +18,7 @@ const { isMobile } = useDeviceWidth()
         >
             <ui-button
                 v-if="!isMobile"
+                @click="openCatalog"
                 class="!border-0 w-fit min-w-fit hidden lg:block"
             >
                 <span class="flex items-center">

@@ -45,7 +45,7 @@ export const useMainStore = defineStore('main', {
         async getPage(handle: string) {
             const { client } = useAPI()
 
-            return client.get<APIPageDetail>('/page/detail', {
+            return await client.get<APIPageDetail>('/page/detail', {
                 query: {
                     handle
                 }
@@ -54,7 +54,7 @@ export const useMainStore = defineStore('main', {
         async getMenu(menuType: APIMenuType) {
             const { client } = useAPI()
 
-            return client.get<APIMenuLinks>('/menu', {
+            return await client.get<APIMenuLinks>('/menu', {
                 query: {
                     handle: menuType
                 }

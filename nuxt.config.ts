@@ -17,6 +17,7 @@ export default defineNuxtConfig({
         { path: '~/domain/blocks', prefix: 'Blocks' },
         { path: '~/components' },
         { path: '~/domain/banners' },
+        { path: '~/domain/catalog/components' },
         { path: '~/domain/vendors' },
         { path: '~/domain/products/components', prefix: 'ProductCard' }
     ],
@@ -36,6 +37,9 @@ export default defineNuxtConfig({
             autoprefixer: {}
         }
     },
+    devServer: {
+        port: Number(process.env.SERVER_PORT) || 3000
+    },
     vite: {
         css: {
             preprocessorOptions: {
@@ -47,7 +51,7 @@ export default defineNuxtConfig({
         server: {
             proxy: {
                 '/api/': {
-                    target: 'https://animal-world.demoalente.ru',
+                    target: process.env.PROD_URL,
                     changeOrigin: true
                 }
             }

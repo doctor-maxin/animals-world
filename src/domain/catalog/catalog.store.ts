@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { APISeoBlock } from '~~/src/helpers/api.types'
 import {
     APICatalogItem,
     APICatalogResponse,
@@ -10,13 +11,15 @@ interface CatalogState {
     categories: APICatalogItem[]
     seo: APISeoPage | null
     title: string
+    mainSeoBlock: APISeoBlock | null
 }
 
 export const useCatalogStore = defineStore('catalog', {
     state: (): CatalogState => ({
         categories: [],
         seo: null,
-        title: 'Каталог'
+        title: 'Каталог',
+        mainSeoBlock: null
     }),
     getters: {
         getMainCategories: (
@@ -33,6 +36,9 @@ export const useCatalogStore = defineStore('catalog', {
         setCategories(items: APICatalogItem[]) {
             this.categories = items
         },
+        setSeoBlock(block: APISeoBlock) {
+            this.mainSeoBlock = block
+        },
         setCatalogInfo(item: APICatalogItem) {
             this.seo = item.seo
             this.title = item.title
@@ -43,9 +49,15 @@ export const useCatalogStore = defineStore('catalog', {
                 query
             })
         },
-        async getCategories() {
+        async getCategories(handle?: string) {
             const { client } = useAPI()
-            return client.get<APICatalogResponse>('/catalog_section')
+            const query: any = {}
+            if (handle) {
+                query.handle = handle
+            }
+            return client.get<APICatalogResponse>('/catalog_section', {
+                query
+            })
         }
     }
 })
