@@ -1,7 +1,7 @@
 import { mande } from 'mande'
 export const useAPI = () => {
     const client = mande(
-        `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/api`
+        `http://localhost:3000/api`
     )
 
     const setToken = (token: string) => {

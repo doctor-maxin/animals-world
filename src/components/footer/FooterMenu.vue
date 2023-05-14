@@ -54,7 +54,7 @@ defineProps<FooterMenuProps>()
                         >
                         <a
                             v-else-if="sublink.link.type === 'catalog_section'"
-                            :href="sublink.link.handle"
+                            :href="`${menu.link.href}/${sublink.link.handle}`"
                             >{{ sublink.title }}</a
                         >
                     </template>

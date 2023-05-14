@@ -59,19 +59,20 @@ export default <RouterConfig>{
                 )
         },
         {
+            name: 'catalog-item',
+            path: '/catalog/:handle',
+            component: () =>
+            import('~/domain/catalog/category.page.vue').then(
+                (r: any) => r.default || r
+            )
+        },
+        {
             name: 'catalog',
             path: '/catalog',
             component: () =>
                 import('~/domain/catalog/catalog.page.vue').then(
                     (r: any) => r.default || r
                 ),
-        }, {
-            name: 'catalog',
-            path: '/catalog/:handle',
-            component: () =>
-            import('~/domain/catalog/category.page.vue').then(
-                (r: any) => r.default || r
-            )
         },
         {
             name: 'vendors',
@@ -102,12 +103,8 @@ export default <RouterConfig>{
                     (r: any) => r.default || r
                 )
         },
-        { 
-            path: '/:pathMatch(.*)*', name: 'NotFound', 
-            component: () => 
-                import('~/components/common/NotFound.vue').then(
-                    (r: any) => r.default || r
-                ) 
+        { path: '/:pathMatch(.*)*', name: 'NotFound', component: 
+            () => import('~/components/common/NotFound.vue').then((r: any) => r.default || r)
         },
     ]
 }

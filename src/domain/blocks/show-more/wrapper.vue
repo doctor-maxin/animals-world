@@ -20,8 +20,13 @@ const checkContentHeight = () => {
 const maxHeightStyle = computed(() => {
     return contentIsLarge.value ? `${props.maxHeightContent / 16}rem` : `100rem`
 })
-
-onMounted(() => window.addEventListener('resize', checkContentHeight))
+const onClick = () => {
+    console.log('ONCLIOCK')
+}
+onMounted(() => {
+    window.addEventListener('resize', checkContentHeight)
+    checkContentHeight()
+})
 onUnmounted(() => window.removeEventListener('resize', checkContentHeight))
 </script>
 <template>
@@ -34,8 +39,8 @@ onUnmounted(() => window.removeEventListener('resize', checkContentHeight))
             <slot />
         </div>
         <Transition>
-            <div v-if="contentIsLarge">
-                <slot name="button" @click="contentIsLarge = false" />
+            <div>
+                <slot name="button" @click="onClick" />
             </div>
         </Transition>
     </div>

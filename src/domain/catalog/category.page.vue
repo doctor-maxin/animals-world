@@ -19,7 +19,7 @@ const { data } = useAsyncData('catalog', () =>
                     v-if="data.children?.length"
                     :list="data.children"
                 />
-                <SeoBlock v-if="data.seo_block" :seo-block="data.seo_block" />
+                <CommonSeoBlock v-if="data.seo_block" :block="data.seo_block" />
             </div>
         </Suspense>
     </div>

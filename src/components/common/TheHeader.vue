@@ -8,7 +8,9 @@
             <HeaderMainMenu />
         </div>
     </header>
+    <Suspense>
     <HeaderSecondMenu />
+</Suspense>
 </template>
 
 <script lang="ts" setup>
