@@ -1,17 +1,15 @@
-import { mande } from 'mande'
+import { mande } from "mande";
 export const useAPI = () => {
-    const client = mande(
-        `http://localhost:3000/api`
-    )
+	const client = mande(`http://localhost:3001/api`);
 
-    const setToken = (token: string) => {
-        client.options.headers.Authorization = 'Bearer ' + token
-    }
-    const clearToken = () => delete client.options.headers.Authorization
+	const setToken = (token: string) => {
+		client.options.headers.Authorization = "Bearer " + token;
+	};
+	const clearToken = () => delete client.options.headers.Authorization;
 
-    return {
-        client,
-        setToken,
-        clearToken
-    }
-}
+	return {
+		client,
+		setToken,
+		clearToken,
+	};
+};
