@@ -8,82 +8,80 @@ const options = [
     { id: 3, label: 'Красноярск' }
 ]
 const { isMobile } = useDeviceWidth()
-
-const openCatalog = () => {}
+const router = useRouter()
+const openCatalog = () => {
+    router.push('/catalog')
+}
 </script>
 <template>
-    <client-only>
-        <div
-            class="grid grid-flow-col grid-cols-[auto_auto] items-center gap-3 lg:gap-6"
-        >
-            <ui-button
-                v-if="!isMobile"
-                @click="openCatalog"
-                class="!border-0 w-fit min-w-fit hidden lg:block"
-            >
-                <span class="flex items-center">
-                    <nuxt-icon
-                        filled
-                        class="text-[2.5rem] -my-3 -ml-2"
-                        name="40/catalog-search"
-                    />
-                    <span>КАТАЛОГ</span>
-                </span>
-            </ui-button>
-            <search-field
-                :options="options"
-                class=""
-                v-model="search"
-                placeholder="Поиск по товарам"
+  <client-only>
+    <div
+      class="grid grid-flow-col grid-cols-[auto_auto] items-center gap-3 lg:gap-6"
+    >
+      <ui-button
+        v-if="!isMobile"
+        class="!border-0 w-fit min-w-fit hidden lg:block"
+        @click="openCatalog"
+      >
+        <span class="flex items-center">
+          <nuxt-icon
+            filled
+            class="text-[2.5rem] -my-3 -ml-2"
+            name="40/catalog-search"
+          />
+          <span>КАТАЛОГ</span>
+        </span>
+      </ui-button>
+      <search-field
+        v-model="search"
+        :options="options"
+        class=""
+        placeholder="Поиск по товарам"
+      />
+      <button class="lg:hidden flex items-center">
+        <nuxt-icon class="text-[2rem]" name="mobile/menu" />
+      </button>
+      <nav v-if="!isMobile" class="hidden lg:block">
+        <ul class="flex items-center gap-5">
+          <nuxt-link to="/" class="flex items-center gap-1 group">
+            <nuxt-icon
+              name="40/promo"
+              class="text-[2.5rem]"
+              filled
             />
-            <button class="lg:hidden flex items-center">
-                <nuxt-icon class="text-[2rem]" name="mobile/menu" />
-            </button>
-            <nav v-if="!isMobile" class="hidden lg:block">
-                <ul class="flex items-center gap-5">
-                    <nuxt-link to="/" class="flex items-center gap-1 group">
-                        <nuxt-icon
-                            name="40/promo"
-                            class="text-[2.5rem]"
-                            filled
-                        />
-                        <span
-                            class="group-hover:text-primary-blue font-semibold"
-                            >Акции</span
-                        >
-                    </nuxt-link>
-                    <nuxt-link to="/" class="flex items-center gap-1 group">
-                        <nuxt-icon
-                            name="40/favourites"
-                            class="text-[2.5rem] text-primary-blue"
-                        />
-                        <span
-                            class="group-hover:text-primary-blue font-semibold"
-                            >Избранное</span
-                        >
-                    </nuxt-link>
-                    <nuxt-link to="/" class="flex items-center gap-1 group">
-                        <nuxt-icon
-                            name="40/account"
-                            class="text-[2.5rem] text-primary-blue"
-                        />
-                        <span
-                            class="group-hover:text-primary-blue font-semibold whitespace-nowrap"
-                            >Личный кабинет</span
-                        >
-                    </nuxt-link>
-                    <nuxt-link to="/" class="flex items-center gap-1 group">
-                        <nuxt-icon
-                            name="40/bag"
-                            class="text-[2.5rem] text-primary-blue"
-                        />
-                        <span
-                            class="group-hover:text-primary-blue font-semibold"
-                            >Корзина</span
-                        >
-                    </nuxt-link>
-                </ul>
-            </nav>
-        </div>
-    </client-only>
+            <span
+              class="group-hover:text-primary-blue font-semibold"
+            >Акции</span>
+          </nuxt-link>
+          <nuxt-link to="/" class="flex items-center gap-1 group">
+            <nuxt-icon
+              name="40/favourites"
+              class="text-[2.5rem] text-primary-blue"
+            />
+            <span
+              class="group-hover:text-primary-blue font-semibold"
+            >Избранное</span>
+          </nuxt-link>
+          <nuxt-link to="/" class="flex items-center gap-1 group">
+            <nuxt-icon
+              name="40/account"
+              class="text-[2.5rem] text-primary-blue"
+            />
+            <span
+              class="group-hover:text-primary-blue font-semibold whitespace-nowrap"
+            >Личный кабинет</span>
+          </nuxt-link>
+          <nuxt-link to="/" class="flex items-center gap-1 group">
+            <nuxt-icon
+              name="40/bag"
+              class="text-[2.5rem] text-primary-blue"
+            />
+            <span
+              class="group-hover:text-primary-blue font-semibold"
+            >Корзина</span>
+          </nuxt-link>
+        </ul>
+      </nav>
+    </div>
+  </client-only>
 </template>

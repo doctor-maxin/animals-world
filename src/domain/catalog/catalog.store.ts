@@ -53,8 +53,11 @@ export const useCatalogStore = defineStore('catalog', {
             const { client } = useAPI()
             const query: any = {}
             if (handle) {
-                query.handle = handle
+                if (Array.isArray(handle)) {
+                    query.handle = handle.join('/')
+                } else query.handle = handle
             }
+            console.log('GET HANDLE ', query.handle)
             return client.get<APICatalogResponse>('/catalog_section', {
                 query
             })

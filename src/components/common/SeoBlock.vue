@@ -7,7 +7,7 @@ interface SeoBlockProps {
 defineProps<SeoBlockProps>()
 </script>
 <template>
-    <div>
+    <div v-if="block.text || block.title || block">
         <div class="flex lg:gap-10 bg-gray-500 px-4 py-5 lg:py-12 lg:px-13 rounded-xl lg:rounded-3.5">
             <div v-if="block.image" class="hidden lg:block w-[12.75rem] min-w-[12.75rem] aspect-square">
                 <img
@@ -17,17 +17,18 @@ defineProps<SeoBlockProps>()
                     :alt="block.image.alt"
                 />
             </div>
-            <BlocksShowMoreWrapper :max-height-content="240">
+            <BlocksShowMoreWrapper :max-height-content="180" >
                 <template #default>
                     <div>
-                        <h4 class="h1 mb-5">{{ block.title }}</h4>
+                        <h4 v-if="block.title" class="h1 mb-5">{{ block.title }}</h4>
                         <div v-html="block.text" />
                     </div>
                 </template>
-                <template #button v-slot="{ open }">
-                    <button @click="$emit('click')">
-                        <span>Развернуть</span>
-                        <nuxt-icon name="20/arrow" />
+                <template #button="{open, click}">
+                    <button @click="click" class="text-primary-blue flex gap-2 items-center">
+                        <span>{{open ? 'Свернуть' : 'Развернуть'}}</span>
+                        <nuxt-icon class="text-black text-xl "  
+                        :class="[open ? '-rotate-90' : 'rotate-90' ]" name="20/arrow" />
                     </button>
                 </template>
             </BlocksShowMoreWrapper>
