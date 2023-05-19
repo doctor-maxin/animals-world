@@ -5,12 +5,14 @@ import {
 	APICatalogResponse,
 	APIProductItem,
 	APISeoPage,
+	APIFilterResponse,
 } from "~~/src/helpers/api.types";
 
 interface CatalogState {
 	categories: APICatalogItem[];
 	seo: APISeoPage | null;
 	title: string;
+	filters: any;
 	mainSeoBlock: APISeoBlock | null;
 }
 
@@ -18,6 +20,7 @@ export const useCatalogStore = defineStore("catalog", {
 	state: (): CatalogState => ({
 		categories: [],
 		seo: null,
+		filters: {},
 		title: "Каталог",
 		mainSeoBlock: null,
 	}),
@@ -49,15 +52,23 @@ export const useCatalogStore = defineStore("catalog", {
 				query,
 			});
 		},
-		async getCategories(handle?: string | string[]) {
+		async getFilters(section_handle: string) {
+			const { client } = useAPI();
+			return client.get<APIFilterResponse>("/catalog_good/filter", {
+				query: {
+					section_handle,
+				},
+			});
+		},
+		async getCategories(handle?: string) {
 			const { client } = useAPI();
 			const query: any = {};
 			if (handle) {
-				if (Array.isArray(handle)) {
-					query.handle = handle.join("/");
-				} else query.handle = handle;
+				query.handle = handle.endsWith("/")
+					? handle.slice(0, -1)
+					: handle;
 			}
-			console.log("GET HANDLE ", query);
+			console.log("GET HANDLE ", query, handle);
 			return client.get<APICatalogResponse>("/catalog_section", {
 				query,
 			});

@@ -20,12 +20,15 @@ export const useProductsStore = defineStore("products", {
 				query: good_ids,
 			});
 		},
-		async getProduct(handle: string) {
+		async getProduct(handle: string, sectionHandle?: string) {
 			const { client } = useAPI();
+			const query: any = {
+				handle,
+			};
+			if (sectionHandle) query.section_handle = sectionHandle;
+			console.log("Get Product handle ", query);
 			return client.get<APIProductItem>("/catalog_good/detail", {
-				query: {
-					handle,
-				},
+				query,
 			});
 		},
 	},

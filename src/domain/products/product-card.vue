@@ -9,7 +9,12 @@ interface ProductCardProps {
 const props = defineProps<ProductCardProps>();
 
 const productLink = computed(() => {
-	return "/" + props.item.link.section_handle + "/" + props.item.link.handle;
+	return (
+		"/catalog/" +
+		props.item.link.section_handle +
+		"/" +
+		props.item.link.handle
+	);
 });
 </script>
 <template>

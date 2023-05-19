@@ -6,19 +6,19 @@ interface CategoryCatalog {
 	handle: string | string[];
 }
 const props = defineProps<CategoryCatalog>();
-const handle = Array.isArray(props.handle)
-	? props.handle.join("/")
-	: props.handle;
+const categoryHandle = computed(() => {
+	return Array.isArray(props.handle) ? props.handle.join("/") : props.handle;
+});
 
 const catalogStore = useCatalogStore();
 
 const { data } = await useLazyAsyncData(() =>
-	catalogStore.getProducts({ section_handle: handle })
+	catalogStore.getProducts({ section_handle: categoryHandle.value })
 );
 </script>
 <template>
-	<div>
-		<CategoryFilters :id="id" />
+	<div class="grid grid-cols-[17.625rem_auto] gap-7">
+		<CategoryFilters :section-handle="categoryHandle" :id="id" />
 		<div class="flex flex-col gap-7">
 			<CategorySorting />
 			<Suspense>

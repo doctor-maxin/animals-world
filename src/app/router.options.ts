@@ -1,4 +1,6 @@
 import type { RouterConfig } from "@nuxt/schema";
+import { useCatalogStore } from "../domain/catalog/catalog.store";
+import { useProductsStore } from "../domain/products/products.store";
 // https://router.vuejs.org/api/interfaces/routeroptions.html
 export default <RouterConfig>{
 	routes: (_routes: any) => [
@@ -60,6 +62,7 @@ export default <RouterConfig>{
 		},
 		{
 			name: "catalog-item",
+			props: true,
 			path: "/catalog/:handle(.*)*",
 			component: () =>
 				import("~/domain/catalog/category.page.vue").then(
@@ -67,8 +70,9 @@ export default <RouterConfig>{
 				),
 			children: [
 				{
-					path: "/:pathMatch(.*)*",
+					path: "/catalog/:handle(.*)*",
 					name: "product-detail",
+					props: true,
 					component: () =>
 						import("~/domain/products/product.page.vue").then(
 							(r: any) => r.default || r
