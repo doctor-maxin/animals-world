@@ -1,4 +1,4 @@
-import { resolve, join } from "path";
+import { join, resolve } from "path";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -21,6 +21,7 @@ export default defineNuxtConfig({
 		{ path: "~/domain/vendors" },
 		{ path: "~/domain/products/components", prefix: "ProductCard" },
 		{ path: "~/domain/products" },
+		{ path: "~/domain/catalog/components", prefix: "Catalog" },
 	],
 	typescript: {
 		includeWorkspace: true,

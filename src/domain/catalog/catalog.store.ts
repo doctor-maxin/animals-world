@@ -3,24 +3,42 @@ import { APISeoBlock } from "~~/src/helpers/api.types";
 import {
 	APICatalogItem,
 	APICatalogResponse,
+	APIFilterResponse,
 	APIProductItem,
 	APISeoPage,
-	APIFilterResponse,
 } from "~~/src/helpers/api.types";
 
 interface CatalogState {
 	categories: APICatalogItem[];
 	seo: APISeoPage | null;
 	title: string;
-	filters: any;
+	filters: CatalogFilters;
 	mainSeoBlock: APISeoBlock | null;
+}
+
+interface CatalogFilters {
+	[key: string]: {
+		value: any;
+		type: 'range' | 'checkbox';
+		isActive: boolean;
+	};
+}
+interface RangeInput {
+	min: number;
+	max: number
 }
 
 export const useCatalogStore = defineStore("catalog", {
 	state: (): CatalogState => ({
 		categories: [],
 		seo: null,
-		filters: {},
+		filters: {
+			price: {
+				value: [0, 0],
+				type: 'range',
+				isActive: false,
+			},
+		},
 		title: "Каталог",
 		mainSeoBlock: null,
 	}),
@@ -38,6 +56,31 @@ export const useCatalogStore = defineStore("catalog", {
 	actions: {
 		setCategories(items: APICatalogItem[]) {
 			this.categories = items;
+		},
+		setRangeMin(name: string, min: number) {
+			this.filters[name].value[0] = min
+		},
+		setRangeMax(name: string, max: number) {
+			this.filters[name].value[1] = max
+		},
+		setRangeFilters(name: string, input: RangeInput) {
+			this.filters[name].value = [input.min, input.max]
+			this.filters[name].isActive = true
+		},
+		setCheckbox(name: string, input: any) {
+			if (this.filters[name]) this.filters[name].value = input; else 
+			this.filters[name] = {
+				isActive: true,
+				type: 'checkbox',
+				value: {}
+			}
+		},
+		setActiveFilter(name: string, val: boolean = true) {
+			this.filters[name].isActive = val
+		},
+		resetRangeFilters(name: string, input: RangeInput) {
+			this.filters[name].value = [input.min, input.max]
+			this.filters[name].isActive = false
 		},
 		setSeoBlock(block: APISeoBlock) {
 			this.mainSeoBlock = block;

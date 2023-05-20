@@ -6,6 +6,7 @@ import {
 	PopoverButton,
 	PopoverPanel,
 } from "@headlessui/vue";
+import { IModal } from "~~/src/helpers/modal.types";
 
 const search: Ref<string> = ref("");
 const options = [
@@ -14,9 +15,9 @@ const options = [
 	{ id: 3, label: "Красноярск" },
 ];
 const isOpen: Ref<boolean> = ref(false);
+const modal: Ref<IModal | null> = ref(null)
 
 const { isMobile } = useDeviceWidth();
-const router = useRouter();
 const openCatalog = () => {
 	isOpen.value = !isOpen.value;
 
@@ -24,9 +25,15 @@ const openCatalog = () => {
 	if (body) body.style.overflow = isOpen.value === true ? "hidden" : "auto";
 	// router.push("/catalog");
 };
+
+const openModal = () => {
+	console.log(modal.value)
+	if (modal.value) modal.value.openModal()
+}
 </script>
 <template>
 	<client-only>
+		<div>
 		<Popover>
 			<div
 				class="grid grid-flow-col grid-cols-[auto_auto] items-center gap-3 lg:gap-6"
@@ -79,7 +86,7 @@ const openCatalog = () => {
 								>Избранное</span
 							>
 						</nuxt-link>
-						<nuxt-link to="/" class="flex items-center gap-1 group">
+						<nuxt-link to="/" class="flex items-center gap-1 group" @click="openModal">
 							<nuxt-icon
 								name="40/account"
 								class="text-[2.5rem] text-primary-blue"
@@ -108,5 +115,11 @@ const openCatalog = () => {
 				</PopoverPanel>
 			</div>
 		</Popover>
+		<UiModal ref="modal">
+			<template #header>
+				<h2>Войти и зарегистрироваться</h2>
+			</template>
+		</UiModal>
+	</div>
 	</client-only>
 </template>

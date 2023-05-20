@@ -16,7 +16,7 @@
     .h2,
     h3,
     .h3,
-    h4 {
+    h4, .h4 {
         font-family: 'Open Sans';
         font-style: normal;
         color: theme(colors.gray.900);
@@ -67,7 +67,7 @@
             font-size: 1.25rem;
         }
     }
-    h4 {
+    h4, .h4 {
         font-weight: 700;
         line-height: 1.5rem;
         font-size: 0.875rem;
@@ -165,3 +165,11 @@ body {
     font-style: normal;
     font-family: 'Open Sans';
 }
+
+@layer base {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }

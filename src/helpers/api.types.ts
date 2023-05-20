@@ -84,11 +84,9 @@ export enum APIFilterType {
 }
 
 export type APIFilterValue = {
-	[key: number]: {
 		id: number;
 		title: string;
 		count: number;
-	};
 };
 
 export type APIFilterItem = {

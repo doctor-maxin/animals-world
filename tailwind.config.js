@@ -57,6 +57,7 @@ module.exports = {
 				primary: {
 					yellow: "#FFD540",
 					blue: "#157EB9",
+					text: '#161616'
 				},
 				secondary: {
 					yellow: "#FFE381",
