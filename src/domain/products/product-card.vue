@@ -3,10 +3,12 @@ import { APIProductItem } from "~~/src/helpers/api.types";
 
 interface ProductCardProps {
 	item: APIProductItem;
-	variant: "catalog" | "default";
+	variant?: "catalog" | "default";
 }
 
-const props = defineProps<ProductCardProps>();
+const props = withDefaults(defineProps<ProductCardProps>(), {
+	variant: "default",
+});
 
 const productLink = computed(() => {
 	return (
